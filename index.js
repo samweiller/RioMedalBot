@@ -96,40 +96,62 @@ console.log('Here we go!')
 // initializeTheDatabase();
 var interval = setInterval(updateTheMedalCount, 90000);
 
-  ////////////////////////////
- /////    BOT STUFF    //////
+////////////////////////////
+/////    BOT STUFF    //////
 ////////////////////////////
 
 // controllers.hears flag
 
 controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
-  var theMessage = message.text
-  if (theMessage.indexOf(':') == 0) {
-      var theParsedCountry = theMessage.substring(6, 8).toUpperCase()
-  }
-  bot.reply(message, 'The message was ' + theMessage + '. I heard a flag for ' + theParsedCountry)
+    var theMessage = message.text
+    if (theMessage.indexOf(':') == 0) {
+        var theParsedCountry = theMessage.substring(6, 8).toUpperCase()
+    }
+    bot.reply(message, 'The message was ' + theMessage + '. I heard a flag for ' + theParsedCountry)
 
-  // var ref = firebase.database().ref("dinosaurs");
-//   countryRef.equalTo(theParsedCountry).once("value", function(snapshot) {
-//     console.log(snapshot.key);
-//     bot.reply(message, snapshot.gold)
-// });
+    // var ref = firebase.database().ref("dinosaurs");
+    //   countryRef.equalTo(theParsedCountry).once("value", function(snapshot) {
+    //     console.log(snapshot.key);
+    //     bot.reply(message, snapshot.gold)
+    // });
 
-countryRef.child(theParsedCountry).child('gold').once("value")
-  .then(function(dataSnapshot) {
-    console.log('hello')
-    console.log(dataSnapshot.getKey())
-    console.log('Data ' + dataSnapshot.val())
-    console.log('post value')
-    // console.log('Data ' + dataSnapshot.gold)
-  });
+    // GOLD
+    countryRef.child(theParsedCountry).child('gold').once("value")
+        .then(function(dataSnapshot) {
+            // console.log('hello')
+            // console.log(dataSnapshot.getKey())
+            // console.log('Data ' + dataSnapshot.val())
+            // console.log('post value')
+
+            var goldToReport = dataSnapshot.val()
+        });
+
+    // SILVER
+    countryRef.child(theParsedCountry).child('silver').once("value")
+        .then(function(dataSnapshot) {
+            var silverToReport = dataSnapshot.val()
+        });
+
+    // BRONZE
+    countryRef.child(theParsedCountry).child('bronze').once("value")
+        .then(function(dataSnapshot) {
+            var bronzeToReport = dataSnapshot.val()
+        });
+
+    // COUNTRY
+    countryRef.child(theParsedCountry).child('name').once("value")
+        .then(function(dataSnapshot) {
+            var countryToReport = toTitleCase(dataSnapshot.val())
+        });
+
+    bot.reply(message, countryToReport + ' has ' + goldToReport + ' gold medals.')
 
 
 })
 
 
-  ////////////////////////////
- /////    FUNCTIONS    //////
+////////////////////////////
+/////    FUNCTIONS    //////
 ////////////////////////////
 
 // Initialization
@@ -204,4 +226,9 @@ function updateTheMedalCount() {
     })
 
     console.log('done')
+}
+
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
