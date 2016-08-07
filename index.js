@@ -27,10 +27,8 @@ require('dotenv').config();
 var controller = Botkit.slackbot({
     interactive_replies: true // tells botkit to send button clicks into conversations
 }).configureSlackApp({
-    // clientId: process.env.CLIENT_ID,
-    // clientSecret: process.env.CLIENT_SECRET,
-    clientId: '45872892722.67066863510',
-    clientSecret: '7031cdc2c83f9f21cd82fe4f482e9119',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     scopes: ['bot', 'commands', 'files:write:user'],
 });
 
