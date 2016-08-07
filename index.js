@@ -115,8 +115,10 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
 //     bot.reply(message, snapshot.gold)
 // });
 
-countryRef.once(theParsedCountry)
+countryRef.once("value")
   .then(function(dataSnapshot) {
+    console.log('hello')
+    console.log(dataSnapshot)
     console.log('Data ' + dataSnapshot.gold)
   });
 
