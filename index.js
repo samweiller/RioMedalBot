@@ -93,7 +93,7 @@ controller.on('rtm_close', function(bot) {
 
 console.log('Here we go!')
 
-initializeTheDatabase();
+// initializeTheDatabase();
 var interval = setInterval(updateTheMedalCount, 50000);
 
   ////////////////////////////
@@ -107,7 +107,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
   if (theMessage.indexOf(':') == 0 && theMessage.indexOf(':', 1) == theMessage.length) {
       var theParsedCountry = theMessage.substring(6, 8)
   }
-  bot.reply(message, 'I heard a flag for ' + theParsedCountry)
+  bot.reply(message, 'The message was ' + theMessage + '. I heard a flag for ' + theParsedCountry)
 })
 
 
