@@ -146,7 +146,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
                                     var myJSONPackage = {
                                         "attachments": [{
                                             "fallback": "THINGS.",
-                                            "title": ":flag-" + theParsedCountry + ": " + countryToReport + " :flag-" + theParsedCountry + ":"
+                                            "pretext": ":flag-" + theParsedCountry + ": *" + countryToReport + "* :flag-" + theParsedCountry + ":"
                                         }, {
                                             "title": "Gold",
                                             "color": "#FFDF00",
