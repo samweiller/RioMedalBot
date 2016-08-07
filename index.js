@@ -107,7 +107,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
     if (theMessage.indexOf(':') == 0) {
         var theParsedCountry = theMessage.substring(6, 8).toUpperCase()
     }
-    bot.reply(message, 'The message was ' + theMessage + '. I heard a flag for ' + theParsedCountry)
+    // bot.reply(message, 'The message was ' + theMessage + '. I heard a flag for ' + theParsedCountry)
 
     // var ref = firebase.database().ref("dinosaurs");
     //   countryRef.equalTo(theParsedCountry).once("value", function(snapshot) {
@@ -143,7 +143,26 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
                                     var countryToReport = toTitleCase(dataSnapshot.val())
                                     console.log(countryToReport)
 
-                                      bot.reply(message, countryToReport + ' has ' + goldToReport + ' gold medals.')
+                                    var myJSONPackage = {
+                                        "attachments": [{
+                                            "fallback": "THINGS.",
+                                            "title": ":flag-" + theParsedCountry + ": " + countryToReport + " :flag-" + theParsedCountry + ":"
+                                        }, {
+                                            "title": "Gold",
+                                            "color": "#FFDF00",
+                                            "text": goldToReport
+                                        }, {
+                                            "title": "Silver",
+                                            "color": "#C0C0C0",
+                                            "text": silverToReport
+                                        }, {
+                                            "title": "Bronze",
+                                            "color": "#D4AF37",
+                                            "text": bronzeToReport
+                                        }]
+                                    }
+
+                                    bot.reply(message, countryToReport + ' has ' + goldToReport + ' gold medals.')
                                 });
 
 
@@ -240,7 +259,8 @@ function updateTheMedalCount() {
     console.log('done')
 }
 
-function toTitleCase(str)
-{
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
 }
