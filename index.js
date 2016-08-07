@@ -103,7 +103,11 @@ var interval = setInterval(updateTheMedalCount, 50000);
 // controllers.hears flag
 
 controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
-  bot.reply(message, 'I heard a flag!')
+  var theMessage = message.text
+  if (theMessage.indexOf(':') == 0 && theMessage.indexOf(':', 1) == 0) {
+      var theParsedCountry = theMessage.substring(6, 8)
+  }
+  bot.reply(message, 'I heard a flag for ' + theParsedCountry)
 })
 
 
