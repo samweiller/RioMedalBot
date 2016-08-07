@@ -124,23 +124,29 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
             // console.log('post value')
 
             var goldToReport = dataSnapshot.val()
+            console.log(goldToReport)
 
             // SILVER
             countryRef.child(theParsedCountry).child('silver').once("value")
                 .then(function(dataSnapshot) {
                     var silverToReport = dataSnapshot.val()
+                    console.log(silverToReport)
 
                     // BRONZE
                     countryRef.child(theParsedCountry).child('bronze').once("value")
                         .then(function(dataSnapshot) {
                             var bronzeToReport = dataSnapshot.val()
+                            console.log(bronzeToReport)
 
                             countryRef.child(theParsedCountry).child('name').once("value")
                                 .then(function(dataSnapshot) {
                                     var countryToReport = toTitleCase(dataSnapshot.val())
+                                    console.log(countryToReport)
+
+                                      bot.reply(message, countryToReport + ' has ' + goldToReport + ' gold medals.')
                                 });
 
-                            bot.reply(message, countryToReport + ' has ' + goldToReport + ' gold medals.')
+
                         });
                 });
         });
