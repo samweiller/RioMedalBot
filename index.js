@@ -162,7 +162,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
                                         }]
                                     }
 
-                                    bot.reply(message, countryToReport + ' has ' + goldToReport + ' gold medals.')
+                                    bot.reply(message, myJSONPackage)
                                 });
 
 
