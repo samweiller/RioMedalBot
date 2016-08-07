@@ -100,7 +100,7 @@ console.log('Here we go!')
 // controllers.hears flag
 
 
-initializeTheDatabase();
+// initializeTheDatabase();
 var interval = setInterval(updateTheMedalCount, 50000);
 
 
@@ -132,9 +132,9 @@ function initializeTheDatabase() {
                 alpha2Code = 'XX'
             }
 
-            console.log(countryName)
-            console.log(countryCode)
-            console.log(alpha2Code)
+            // console.log(countryName)
+            // console.log(countryCode)
+            // console.log(alpha2Code)
 
             countryRef.child(countryCode).set({
                 gold: 0,
