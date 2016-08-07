@@ -94,7 +94,7 @@ controller.on('rtm_close', function(bot) {
 console.log('Here we go!')
 
 // initializeTheDatabase();
-var interval = setInterval(updateTheMedalCount, 50000);
+var interval = setInterval(updateTheMedalCount, 90000);
 
   ////////////////////////////
  /////    BOT STUFF    //////
@@ -119,6 +119,7 @@ countryRef.child(theParsedCountry).child('gold').once("value")
   .then(function(dataSnapshot) {
     console.log('hello')
     console.log(dataSnapshot.getKey())
+    console.log(dataSnapshot.getValue())
     // console.log('Data ' + dataSnapshot.gold)
   });
 
