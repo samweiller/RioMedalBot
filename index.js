@@ -19,8 +19,7 @@ var ref = db.ref("/");
 var countryRef = ref.child("countries");
 
 var controller = Botkit.slackbot({
-    interactive_replies: true, // tells botkit to send button clicks into conversations
-    storage: firebaseStorage
+    interactive_replies: true // tells botkit to send button clicks into conversations
 }).configureSlackApp({
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
