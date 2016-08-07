@@ -18,6 +18,8 @@ var db = firebase.database();
 var ref = db.ref("/");
 var countryRef = ref.child("countries");
 
+require('dotenv').config();
+
 var controller = Botkit.slackbot({
     interactive_replies: true // tells botkit to send button clicks into conversations
 }).configureSlackApp({
