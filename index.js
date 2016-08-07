@@ -110,10 +110,16 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
   bot.reply(message, 'The message was ' + theMessage + '. I heard a flag for ' + theParsedCountry)
 
   // var ref = firebase.database().ref("dinosaurs");
-  countryRef.equalTo(theParsedCountry).once("value", function(snapshot) {
-  console.log(snapshot.key);
-  bot.reply(message, snapshot.gold)
-});
+//   countryRef.equalTo(theParsedCountry).once("value", function(snapshot) {
+//     console.log(snapshot.key);
+//     bot.reply(message, snapshot.gold)
+// });
+
+countryRef.child(theParsedCountry).once('value')
+  .then(function(dataSnapshot) {
+    console.log('Data ' + dataSnapshot.gold)
+  });
+
 
 })
 
