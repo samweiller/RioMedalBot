@@ -93,15 +93,18 @@ controller.on('rtm_close', function(bot) {
 
 console.log('Here we go!')
 
+// initializeTheDatabase();
+var interval = setInterval(updateTheMedalCount, 50000);
+
   ////////////////////////////
  /////    BOT STUFF    //////
 ////////////////////////////
 
 // controllers.hears flag
 
-
-// initializeTheDatabase();
-var interval = setInterval(updateTheMedalCount, 50000);
+controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
+  bot.reply(message, 'I heard a flag!')
+})
 
 
   ////////////////////////////
@@ -131,10 +134,6 @@ function initializeTheDatabase() {
             if (alpha2Code == undefined) {
                 alpha2Code = 'XX'
             }
-
-            // console.log(countryName)
-            // console.log(countryCode)
-            // console.log(alpha2Code)
 
             countryRef.child(countryCode).set({
                 gold: 0,
