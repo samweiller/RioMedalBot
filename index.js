@@ -118,7 +118,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
 countryRef.child(theParsedCountry).child('gold').once("value")
   .then(function(dataSnapshot) {
     console.log('hello')
-    console.log(dataSnapshot.getValue())
+    console.log(dataSnapshot.getKey())
     // console.log('Data ' + dataSnapshot.gold)
   });
 
