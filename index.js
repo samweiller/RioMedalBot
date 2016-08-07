@@ -4,7 +4,7 @@ var countries = require("i18n-iso-countries");
 var Botkit = require('botkit')
 var firebase = require("firebase");
 firebase.initializeApp({
-    // serviceAccount: "RioMedals-1db94db3db72.json",
+    serviceAccount: "RioMedals-1db94db3db72.json",
     databaseURL: "https://riomedals.firebaseio.com/"
 });
 var express = require('express');
@@ -13,6 +13,10 @@ var app = express();
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+app.get('/', function(req, res) {
+    res.status(200).send('Hello world!');
+});
 
 var db = firebase.database();
 var ref = db.ref("/");
@@ -23,8 +27,10 @@ require('dotenv').config();
 var controller = Botkit.slackbot({
     interactive_replies: true // tells botkit to send button clicks into conversations
 }).configureSlackApp({
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
+    // clientId: process.env.CLIENT_ID,
+    // clientSecret: process.env.CLIENT_SECRET,
+    clientId: '45872892722.67066863510',
+    clientSecret: '7031cdc2c83f9f21cd82fe4f482e9119',
     scopes: ['bot', 'commands', 'files:write:user'],
 });
 
