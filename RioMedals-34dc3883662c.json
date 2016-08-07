@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "riomedals",
+  "private_key_id": "34dc3883662c7b160a66141c6c6424d69fd16b08",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC6E1Fzg5+5Z1Le\nx791dg/w4mCMoTWFwcFDg8X+L9Hunrnzp6M6aKAYw+SNw8HHubnjV+T8JrQOxkV/\nBqP7qI1cfi9+GdFnpoRHXrYOp27++0dPATXodbmyz63MrnWkHnenpVcFn9fdgFCW\n2MmN9WwXut22BO27j6B5EHSeB78GRGO/cUTX19jBzP/VmcgBVg0hEnxsHAe2oZ9i\nZGzptPHYuYoMdWPPtzD+9MJNV0czACRj0acjmXuhFebU0n/CX0R53MmsxqHnehI0\nfK3vCnMdWHUCKP+/hlgCknGdg+v4qdUNUvK7nOWHEWf4OakAccrURu36oZriEyDs\nJ+um1VvrAgMBAAECggEAbZVa7rChrErRXyo78y0ojjCDs85s+uz0qJI+VEhNVj5c\nPMaJNqjPQEZ9n4+d28XhV6Y30NfqSpkx7HE4uci2F7aouZby4BwM4wtAJLkugTPy\n9vA7kz9hsZDlRhmoZpMa3Lxe140fT+91hqD9coEKu57tW3jjmQYo96NdSoQ9V66F\n7wSIp0kSE+ytR+/xzuRRZ5HRuNKI5cwxGu4oupDhztlldv6VxNqu60JcP43lSGux\n3ZkPBjr30RPW1k85bHjokK2Gpoq6l/JWgU1nJHVq6jp5ELbKScjFeLam8bV1MKTT\ngiIKDdCxcLQ5/gsL0BsJ8HOoWYET7/PEX8JJ3e5iwQKBgQDg+TtVtmUF+W+rmgTk\nqt9ePvi098v0HXrLw+QFxtWukAJ7TWjeGbZO3GrBD3V4lVN47Dw/0H4M6R4N7qgs\nFjAnmMUV73h91OlboccJ5W6qmRsWEnL8+64/8vC2mWGo55po/zwgBx3nBcc6r5dC\nn3bs4oUFummVEtCcHnmNMfl64wKBgQDTvMaVqyJfIFm2eU/KAhSD+6EAFL7cEO7a\nXSj1SSwsp5iY/340IY7hTLBRuY53hmZtKcZL7C3ieWIbAC3HFeVE++bczzRl58Oj\nDGiyfBZPCEbLS529x6u9GiMm+CpjScVK83EHL1FJJ5pjtfZ3EpZ1jBsMAdxmlrlF\nPNsdzGJBWQKBgBGrIUDTCU4Vz/JfL0EyNka1lVzJFUh/xDQal17oxcFm5/r9El5X\nEJ1S7ENrTmOA/sRBcV3lpvCmokif1K9ZssB5XAkj/IeNYCJlKzeYwD8/tQPfwQ4j\nSgUVtFfy5duZDORwHy24wV1yc7olLjD6SyHBjIbto/skNiP8tLklEp3XAoGAW5cU\nG9fsRVPcGse9EPf3YeQuD7fpm44jlAeqWPgvCJ3yr3QNZoWBpcmjl6Z5jxBvLBde\n9KaUbpvtKRrZsn2xMDb69VcYJmCrytLqUxLEH6nH3da2xEoj6ufsfsXoqAxYMIS/\nxsjcE5Xy/eDPXVCIDw7tADOp4CKgv+eELQ6lDfkCgYBIKI/ZwtmLpeYMQUQIxvf6\nNKt+PaFBbHAOCRyf6CQ69eoimZ3aYOdbegYRCkYwSGPnNbYArYuPn5++je3dDjqH\npC10ty6qRUA25fHc7kKKCk4CzgYpnoDzipaV5BggJsLmX1wXcMHeM2iY07IaH6hF\n/qmfMeEW6NnJUiIdjwuwEw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "nodenodenode@riomedals.iam.gserviceaccount.com",
+  "client_id": "113523287064300122879",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nodenodenode%40riomedals.iam.gserviceaccount.com"
+}

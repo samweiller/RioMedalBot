@@ -4,7 +4,7 @@ var countries = require("i18n-iso-countries");
 var Botkit = require('botkit')
 var firebase = require("firebase");
 firebase.initializeApp({
-    serviceAccount: "RioMedals-1db94db3db72.json",
+    serviceAccount: "RioMedals-34dc3883662c.json",
     databaseURL: "https://riomedals.firebaseio.com/"
 });
 var express = require('express');
