@@ -119,7 +119,8 @@ countryRef.child(theParsedCountry).once("value")
   .then(function(dataSnapshot) {
     console.log('hello')
     console.log(dataSnapshot.getKey())
-    console.log('Data ' + dataSnapshot.getValue())
+    console.log('Data ' + dataSnapshot.val())
+    console.log('post value')
     // console.log('Data ' + dataSnapshot.gold)
   });
 
