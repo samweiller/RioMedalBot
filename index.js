@@ -112,6 +112,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
   // var ref = firebase.database().ref("dinosaurs");
   countryRef.equalTo(theParsedCountry).once("value", function(snapshot) {
   console.log(snapshot.key);
+  bot.reply(message, snapshot.gold)
 });
 
 })
