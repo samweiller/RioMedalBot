@@ -101,7 +101,7 @@ console.log('Here we go!')
 
 
 initializeTheDatabase();
-var interval = setInterval(updateTheMedalCount, 5000);
+var interval = setInterval(updateTheMedalCount, 50000);
 
 
   ////////////////////////////
