@@ -93,7 +93,7 @@ controller.on('rtm_close', function(bot) {
 
 console.log('Here we go!')
 
-// initializeTheDatabase();
+initializeTheDatabase();
 var interval = setInterval(updateTheMedalCount, 50000);
 
   ////////////////////////////
@@ -104,7 +104,7 @@ var interval = setInterval(updateTheMedalCount, 50000);
 
 controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
   var theMessage = message.text
-  if (theMessage.indexOf(':') == 0 && theMessage.indexOf(':', 1) == 0) {
+  if (theMessage.indexOf(':') == 0 && theMessage.indexOf(':', 1) == theMessage.length) {
       var theParsedCountry = theMessage.substring(6, 8)
   }
   bot.reply(message, 'I heard a flag for ' + theParsedCountry)
@@ -139,12 +139,12 @@ function initializeTheDatabase() {
                 alpha2Code = 'XX'
             }
 
-            countryRef.child(countryCode).set({
+            countryRef.child(alpha2Code).set({
                 gold: 0,
                 silver: 0,
                 bronze: 0,
                 name: countryName,
-                alpha2: alpha2Code
+                country3Code: countryCode
             })
         })
     })
@@ -167,7 +167,17 @@ function updateTheMedalCount() {
             var silverMedals = $(this).find('.col-5').html() // silver
             var bronzeMedals = $(this).find('.col-6').html() // bronze
 
-            countryRef.child(countryCode).update({
+            var alpha2Code = countries.getAlpha2Code(countryName, 'en')
+            if (alpha2Code == undefined) {
+                // alpha2Code = 'xx'
+                alpha2Code = countries.alpha3ToAlpha2(countryCode)
+            }
+
+            if (alpha2Code == undefined) {
+                alpha2Code = 'XX'
+            }
+
+            countryRef.child(alpha2Code).update({
                 // name: countryName,
                 gold: goldMedals,
                 silver: silverMedals,
