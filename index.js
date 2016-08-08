@@ -72,16 +72,16 @@ controller.on('create_bot', function(bot, config) {
             if (!err) {
                 trackBot(bot);
             }
-            // // Bot startup debugging code
-            // bot.startPrivateConversation({
-            //     user: config.createdBy
-            // }, function(err, convo) {
-            //     if (err) {
-            //         console.log(err);
-            //     } else {
-            //         convo.say('I am a bot that has just joined your team');
-            //     }
-            // });
+            // Bot startup debugging code
+            bot.startPrivateConversation({
+                user: config.createdBy
+            }, function(err, convo) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    convo.say('I am a bot that has just joined your team');
+                }
+            });
         });
     }
 });
