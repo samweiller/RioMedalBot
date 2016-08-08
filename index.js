@@ -1,3 +1,6 @@
+  ////////////////////////////
+ /////    PACKAGES     //////
+////////////////////////////
 var cheerio = require('cheerio');
 var request = require('request');
 var countries = require("i18n-iso-countries");
@@ -9,6 +12,12 @@ firebase.initializeApp({
 });
 var express = require('express');
 var bodyParser = require('body-parser');
+require('dotenv').config();
+
+
+  ////////////////////////////
+ /////      SETUP      //////
+////////////////////////////
 var app = express();
 app.use(bodyParser.urlencoded({
     extended: true
@@ -22,10 +31,8 @@ var db = firebase.database();
 var ref = db.ref("/");
 var countryRef = ref.child("countries");
 
-require('dotenv').config();
-
 var controller = Botkit.slackbot({
-    interactive_replies: true // tells botkit to send button clicks into conversations
+    interactive_replies: true
 }).configureSlackApp({
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
@@ -57,7 +64,6 @@ function trackBot(bot) {
     _bots[bot.config.token] = bot;
 }
 
-
 controller.on('create_bot', function(bot, config) {
     if (_bots[bot.config.token]) {
         // already online! do nothing.
@@ -66,7 +72,7 @@ controller.on('create_bot', function(bot, config) {
             if (!err) {
                 trackBot(bot);
             }
-
+            // // Bot startup debugging code
             // bot.startPrivateConversation({
             //     user: config.createdBy
             // }, function(err, convo) {
@@ -74,7 +80,6 @@ controller.on('create_bot', function(bot, config) {
             //         console.log(err);
             //     } else {
             //         convo.say('I am a bot that has just joined your team');
-            //         convo.say('You must now /invite me to a channel so that I can be of use!');
             //     }
             // });
         });
@@ -88,64 +93,55 @@ controller.on('rtm_open', function(bot) {
 
 controller.on('rtm_close', function(bot) {
     console.log('** The RTM api just closed');
-    // you may want to attempt to re-open
 });
 
 console.log('Here we go!')
 
-// initializeTheDatabase();
-var interval = setInterval(updateTheMedalCount, 90000);
+// initializeTheDatabase(); // Only used on clean slate runs
+var interval = setInterval(updateTheMedalCount, 90000); // Run the scrape on a set interval
 
-////////////////////////////
-/////    BOT STUFF    //////
-////////////////////////////
 
-// controllers.hears flag
+  ////////////////////////////
+ /////    BOT STUFF    //////
+////////////////////////////
 
 controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
-    var theMessage = message.text
-    if (theMessage.indexOf(':') == 0) {
-        var theParsedCountry = theMessage.substring(6, 8).toUpperCase()
+  /* CONTROLLER.HEARS
+  Controller.hears listens for words or patterns in the user's message. "ambient" sets up, in Slack, the fact that the user is not required to invoke the bot for it to 'hear' the pattern.
+  */
+
+    var theMessage = message.text // Pull the text out of the message object
+    if (theMessage.indexOf(':') == 0) { // check to make sure that this is really an emoji
+                                        // TODO: make this more robust
+        var theParsedCountry = theMessage.substring(6, 8).toUpperCase() // Parse out the flag emoji country code and capitalize it
     }
-    // bot.reply(message, 'The message was ' + theMessage + '. I heard a flag for ' + theParsedCountry)
 
-    // var ref = firebase.database().ref("dinosaurs");
-    //   countryRef.equalTo(theParsedCountry).once("value", function(snapshot) {
-    //     console.log(snapshot.key);
-    //     bot.reply(message, snapshot.gold)
-    // });
+    // Pull data from firebase
+    // Nested calls to get gold, silver, bronze, and country name.
+    ////// nested calls were a hacky way to do this to ensure the final report didn't fail.
 
-    // GOLD
     countryRef.child(theParsedCountry).child('gold').once("value")
         .then(function(dataSnapshot) {
-            // console.log('hello')
-            // console.log(dataSnapshot.getKey())
-            // console.log('Data ' + dataSnapshot.val())
-            // console.log('post value')
-
             var goldToReport = dataSnapshot.val()
-            console.log(goldToReport)
 
             // SILVER
             countryRef.child(theParsedCountry).child('silver').once("value")
                 .then(function(dataSnapshot) {
                     var silverToReport = dataSnapshot.val()
-                    console.log(silverToReport)
 
                     // BRONZE
                     countryRef.child(theParsedCountry).child('bronze').once("value")
                         .then(function(dataSnapshot) {
                             var bronzeToReport = dataSnapshot.val()
-                            console.log(bronzeToReport)
 
                             countryRef.child(theParsedCountry).child('name').once("value")
                                 .then(function(dataSnapshot) {
                                     var countryToReport = toTitleCase(dataSnapshot.val())
-                                    console.log(countryToReport)
 
+                                    // Package the results into a neat, formatted JSON message
                                     var myJSONPackage = {
                                         "attachments": [{
-                                            "fallback": "THINGS.",
+                                            "fallback": "this is a fallback",
                                             "title": ":flag-" + theParsedCountry + ": " + countryToReport + " :flag-" + theParsedCountry + ":"
                                         }, {
                                             "title": "Gold",
@@ -162,22 +158,11 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
                                         }]
                                     }
 
-                                    bot.reply(message, myJSONPackage)
+                                    bot.reply(message, myJSONPackage) // Send the JSON response to the user.
                                 });
-
-
                         });
                 });
         });
-
-
-
-
-
-    // COUNTRY
-
-
-
 })
 
 
@@ -256,7 +241,7 @@ function updateTheMedalCount() {
         })
     })
 
-    console.log('done')
+    console.log('Medals Retrieved')
 }
 
 function toTitleCase(str) {
