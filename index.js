@@ -159,8 +159,12 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
                                             "text": bronzeToReport
                                         }]
                                     }
+                                    bot.startConversation(message,function(err,convo) {
+                                      convo.say(myJSONPackage);
+                                      // convo.say('Have a nice day!');
+                                    });
 
-                                    bot.say(myJSONPackage) // Send the JSON response to the user.
+                                    // bot.say(myJSONPackage) // Send the JSON response to the user.
                                 });
                         });
                 });
