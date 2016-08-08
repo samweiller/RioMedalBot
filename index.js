@@ -114,6 +114,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
     if (theMessage.indexOf(':') == 0) { // check to make sure that this is really an emoji
                                         // TODO: make this more robust
         var theParsedCountry = theMessage.substring(6, 8).toUpperCase() // Parse out the flag emoji country code and capitalize it
+        console.log(theParsedCountry)
     }
 
     // Pull data from firebase
