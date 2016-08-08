@@ -109,6 +109,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
   /* CONTROLLER.HEARS
   Controller.hears listens for words or patterns in the user's message. "ambient" sets up, in Slack, the fact that the user is not required to invoke the bot for it to 'hear' the pattern.
   */
+  console.log('this is here')
 
     var theMessage = message.text // Pull the text out of the message object
     if (theMessage.indexOf(':') == 0) { // check to make sure that this is really an emoji
