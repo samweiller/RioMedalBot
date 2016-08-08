@@ -67,16 +67,16 @@ controller.on('create_bot', function(bot, config) {
                 trackBot(bot);
             }
 
-            bot.startPrivateConversation({
-                user: config.createdBy
-            }, function(err, convo) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    convo.say('I am a bot that has just joined your team');
-                    convo.say('You must now /invite me to a channel so that I can be of use!');
-                }
-            });
+            // bot.startPrivateConversation({
+            //     user: config.createdBy
+            // }, function(err, convo) {
+            //     if (err) {
+            //         console.log(err);
+            //     } else {
+            //         convo.say('I am a bot that has just joined your team');
+            //         convo.say('You must now /invite me to a channel so that I can be of use!');
+            //     }
+            // });
         });
     }
 });
@@ -146,7 +146,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
                                     var myJSONPackage = {
                                         "attachments": [{
                                             "fallback": "THINGS.",
-                                            "pretext": ":flag-" + theParsedCountry + ": *" + countryToReport + "* :flag-" + theParsedCountry + ":"
+                                            "title": ":flag-" + theParsedCountry + ": " + countryToReport + " :flag-" + theParsedCountry + ":"
                                         }, {
                                             "title": "Gold",
                                             "color": "#FFDF00",
