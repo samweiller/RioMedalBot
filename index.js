@@ -72,16 +72,16 @@ controller.on('create_bot', function(bot, config) {
             if (!err) {
                 trackBot(bot);
             }
-            // Bot startup debugging code
-            bot.startPrivateConversation({
-                user: config.createdBy
-            }, function(err, convo) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    convo.say('I am a bot that has just joined your team');
-                }
-            });
+            // // Bot startup debugging code
+            // bot.startPrivateConversation({
+            //     user: config.createdBy
+            // }, function(err, convo) {
+            //     if (err) {
+            //         console.log(err);
+            //     } else {
+            //         convo.say('I am a bot that has just joined your team');
+            //     }
+            // });
         });
     }
 });
@@ -98,7 +98,7 @@ controller.on('rtm_close', function(bot) {
 console.log('Here we go!')
 
 // initializeTheDatabase(); // Only used on clean slate runs
-var interval = setInterval(updateTheMedalCount, 90000); // Run the scrape on a set interval
+var interval = setInterval(updateTheMedalCount, 900000); // Run the scrape on a set interval
 
 
   ////////////////////////////
@@ -109,7 +109,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
   /* CONTROLLER.HEARS
   Controller.hears listens for words or patterns in the user's message. "ambient" sets up, in Slack, the fact that the user is not required to invoke the bot for it to 'hear' the pattern.
   */
-  console.log('this is here')
+  // console.log('this is here')
 
     var theMessage = message.text // Pull the text out of the message object
     if (theMessage.indexOf(':') == 0) { // check to make sure that this is really an emoji
@@ -208,7 +208,7 @@ function initializeTheDatabase() {
 }
 
 function updateTheMedalCount() {
-  console.log('UPDATING MEDALS')
+  // console.log('UPDATING MEDALS')
 
     var theURL = "https://www.rio2016.com/en/medal-count-country"
 
