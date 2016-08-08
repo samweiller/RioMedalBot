@@ -208,6 +208,8 @@ function initializeTheDatabase() {
 }
 
 function updateTheMedalCount() {
+  console.log('UPDATING MEDALS')
+
     var theURL = "https://www.rio2016.com/en/medal-count-country"
 
     request({
