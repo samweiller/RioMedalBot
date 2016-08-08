@@ -160,7 +160,7 @@ controller.hears(["flag", "^pattern$"], ["ambient"], function(bot, message) {
                                         }]
                                     }
 
-                                    bot.say(message, myJSONPackage) // Send the JSON response to the user.
+                                    bot.say(myJSONPackage) // Send the JSON response to the user.
                                 });
                         });
                 });
